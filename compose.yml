@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mariadb:lts
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: flowly_root_ns
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: admin_pswd
+      MARIADB_DATABASE: flowly
+    ports:
+      - '3306:3306'
+    volumes:
+      - flowly_db:/var/lib/mariadb
+
+volumes:
+  flowly_db:
