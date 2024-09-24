@@ -1,15 +1,17 @@
-CREATE TABLE user (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(100) NOT NULL,
-    passwordHash TEXT NOT NULL
-) ENGINE=InnoDB; 
+CREATE TABLE users(
+    id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	userName varchar(255) not null,
+	passwordHash text
+)
 
-CREATE TABLE task (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    userId INT NOT NULL,
-    `name` VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
-    priority ENUM('Low', 'Medium', 'High') NOT NULL,
-    status ENUM('todo', 'in progress', 'done') NOT NULL,
-    FOREIGN KEY (userId) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
+
+CREATE TABLE tasks(
+    id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	userId int unsigned not null,
+	name varchar(255) not null,
+	description text,
+	priority enum('low', 'medium', 'high') not null,
+	status enum('todo', 'in progress', 'done') not null,
+	CONSTRAINT fk_task_to_user foreign key (userId) REFERENCES users(id) on delete cascade on update cascade
+)
+
