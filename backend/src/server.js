@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import db from '../src/db/db.js'
 import dotenv from 'dotenv';
+import taskRoutes from './routes/TaskRoutes.js'
 dotenv.config();
 const app = express();
 
@@ -19,6 +20,12 @@ try {
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
+
+
+//API routes
+
+app.use("/api/tasks", taskRoutes);
+
 
 
 app.listen(port, () => {

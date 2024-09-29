@@ -1,8 +1,9 @@
-import db from "../db/db";
+import db from "../db/db.js";
 import { DataTypes } from "sequelize";
 
 const Task = db.define(
     'task',
+    
     {
         userId: {
             type: DataTypes.INTEGER,
@@ -23,6 +24,15 @@ const Task = db.define(
         status: {
             type: DataTypes.ENUM("todo", "in progress", "done"),
             allowNull: false,
-        }
+        },
+
+        
+    },
+    {
+        timestamps: false,
     }
+    
+    
 )
+
+export default Task;
